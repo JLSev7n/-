@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PC端登录</title>
+  <link rel="stylesheet" href="./CSS/style.css">
+  <script>
+
+    function valname() {
+
+      var username=document.getElementById("username");
+      var userErr=document.getElementById("userErr");
+      
+      if(username.value.replace(/\s/g,"")=="") {
+        userErr.innerHTML="手机号不能为空";
+        return false;
+      }else if(username.value.length != 11) {
+        userErr.innerHTML = "手机号输入错误"
+        return false;
+      }else{
+        username.value == "admin"
+        // username.value=username.value.replace(/\s/g,"");//除去空格
+        userErr.innerHTML="";
+        return true;
+      }
+    }
+    function valpass() {
+      var password=document.getElementById("password");
+      var passErr=document.getElementById("passErr");
+      if(password.value.replace(/\s/g,"")=="") {
+        passErr.innerHTML="密码不能为空";
+    		return false;
+      }else if(password.value.length>10) {
+         passErr.innerHTML = "密码输入错误"
+         return false;
+      }else {
+        password.value == "admin@123";
+        // password.value=password.value.replace(/\s/g,"");//除去空格
+        passErr.innerHTML="";
+		    return true;
+      }
+      function checkData(){
+        if(valname()==true && valpass()==true) {
+          return true;
+        }else {
+          return false;
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="loginDiv">
+    <form method="post" action="LoginServlet id="form" onsubmit="return checkData()">
+        <h1 style="text-align: center;color: aliceblue;">登录</h1>
+        <p>帐号:<input id="username" type="text" placeholder="（请输入手机号码）" required="required" onblur="valname();"><span id="userErr"></span><label id="name_trip"></label></p>
+        <p>密码:  <input id="password" type="password" placeholder="（请输入密码）" required="required" onblur="valpass();"><span id="passErr"></span><label id="password_trip"></label></p>
+        <div style="text-align: center;margin-top: 30px;">
+            <input type="submit" class="button" value="登录">
+        </div>
+        <a href="#">忘记密码</a>
+        <a href="#">快速注册</a>
+    </form>
+</body>
+</html>
